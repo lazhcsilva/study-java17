@@ -6,50 +6,47 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Program {
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+
         List<String> groceries = new ArrayList<>();
-        int menuOption = 3;
+        boolean showActions = true;
 
         do {
-            System.out.println("Available actions:");
-            System.out.println("0 - to shutdown");
-            System.out.println("1 - to add item(s) to list (comma delimited list)");
-            System.out.println("2 - to remove any items (comma delimited list");
-            System.out.print("Enter a number for which action you want to do: ");
-            menuOption = sc.nextInt();
-            if(menuOption == 1){
-                sc.nextLine();
-                System.out.print("Enter with item name: ");
-                String addItem = sc.nextLine();
-                boolean getItem = findItem(groceries, addItem);
-                if(!getItem){
-                    groceries.add(addItem);
-                } else {
-                    System.out.println("You've already added this item, try again");
-                }
-            } else if (menuOption == 2) {
-                sc.nextLine();
-                System.out.print("Enter with witch item name you want to remove: ");
-                String removeItem = sc.nextLine();
-                groceries.remove(removeItem);
+            printActions();
+            switch (Integer.parseInt(sc.nextLine())){
+                case 1 -> addItem(groceries);
+                case 2 -> removeItem(groceries);
+                default -> showActions = false;
             }
-        } while (menuOption != 0);
-
-        groceries.sort(Comparator.naturalOrder());
-        System.out.println(groceries);
-
+            groceries.sort(Comparator.naturalOrder());
+            System.out.println(groceries);
+        } while (showActions);
         sc.close();
     }
 
-    public static boolean findItem(List<String> itemList, String findItem){
-        for(int i = 0; i < itemList.size(); i++){
-            itemList.get(i);
-            if(itemList.get(i).equals(findItem)){
-                return true;
-            }
-        }
-        return false;
+    private static void printActions(){
+        System.out.println("Available actions:");
+        System.out.println("0 - to shutdown");
+        System.out.println("1 - to add item(s) to list (comma delimited list)");
+        System.out.println("2 - to remove any items (comma delimited list");
+        System.out.print("Enter a number for which action you want to do: ");
     }
+
+    private static void addItem(List<String> groceries){
+        System.out.print("Enter with item name: ");
+        String addItem = sc.nextLine();
+
+        if(!groceries.contains(addItem)){
+            groceries.add(addItem);
+        }
+    }
+
+    private static void removeItem(List<String> groceries){
+        System.out.print("Enter with witch item name you want to remove: ");
+        String removeItem = sc.nextLine();
+        groceries.remove(removeItem);
+    }
+
 }
