@@ -20,7 +20,9 @@ public class Program {
 //        System.out.println(placesToVisit);
 
 //        gettingElements(placesToVisit);
-        printItinerary3(placesToVisit);
+//        printItinerary3(placesToVisit);
+
+        testIterator(placesToVisit);
 
     }
 
@@ -113,6 +115,25 @@ public class Program {
             previousTown = town;
         }
         System.out.println("Trip start at " + list.getLast());
+    }
+
+    public static void testIterator(LinkedList<String> list){
+
+        var iterator = list.listIterator();
+        while(iterator.hasNext()){
+//            System.out.println(iterator.next());
+            if(iterator.next().equals("Brisbane")){ // Remove all Brisbane in the list
+//                iterator.remove();
+                iterator.add("Lake Wivenhoe"); // Adding other value after "Brisbane"
+            }
+        }
+        while(iterator.hasPrevious()){
+            System.out.println(iterator.previous());
+        }
+        System.out.println(list);
+
+        var iterator2 = list.listIterator(3);
+        System.out.println(iterator2.previous());
     }
 
 }
