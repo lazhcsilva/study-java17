@@ -13,7 +13,7 @@ public class Program {
             * Gerenciar uma ordem que pode ser apena suma lista de objetos do item da ordem (list of OrderItem).
             * Temos métodos para adicionar um item ao pedido e imprimir os itens encomendados para que se
                 pareça com um recibo de venda.
-        Criar uma classde de produto para venda (ProductForSale) que deve ter pelo menos 3 campos: type, price e
+        Criar uma class de produto para venda (ProductForSale) que deve ter pelo menos 3 campos: type, price e
         description, e deve ter métodos para:
             * Obter um preço de venda, um método concreto que toma uma quantidade e retorna a quantidade vezes o preço.
             * Printar um item de linha de preço, um metodo concreto, que pega a quantidade e deve printar um item
